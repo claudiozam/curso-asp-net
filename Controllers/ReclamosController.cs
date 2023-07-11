@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationSistemaDeReclamos.Models.ViewModels;
+using WebApplicationSistemaDeReclamos.Services;
 
 namespace WebApplicationSistemaDeReclamos.Controllers
 {
@@ -8,13 +10,36 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         // GET: ReclamosController
         public ActionResult Index()
         {
-            return View();
+            ReclamosService reclamosService = new ReclamosService();
+            //TODO tengo que recuperar el listao de reclamos....
+
+            List<ReclamoViewModel> reclamosViewModel = new List<ReclamoViewModel>();
+
+            ReclamoViewModel reclamoViewModel1 = new ReclamoViewModel();
+            reclamoViewModel1.Id = 1;
+            reclamoViewModel1.Titulo = "Ejemplo titulo";
+            reclamoViewModel1.Descripcion = "Ejemplo1";
+            reclamoViewModel1.Estado = "abierto";
+            reclamoViewModel1.FechaAlta = DateTime.Now;
+            reclamosViewModel.Add(reclamoViewModel1);
+
+            return View(reclamosViewModel);
         }
 
         // GET: ReclamosController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ReclamosService reclamosService = new ReclamosService();
+            //TODO tengo que recuperar un reclamo....
+            
+            ReclamoViewModel reclamoViewModel = new ReclamoViewModel();
+            reclamoViewModel.Id = id;
+            reclamoViewModel.Titulo = "Ejemplo titulo";
+            reclamoViewModel.Descripcion = "Ejemplo1";
+            reclamoViewModel.Estado = "abierto";
+            reclamoViewModel.FechaAlta = DateTime.Now;
+
+            return View(reclamoViewModel);
         }
 
         // GET: ReclamosController/Create
