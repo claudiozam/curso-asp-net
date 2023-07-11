@@ -51,16 +51,20 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         // POST: ReclamosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ReclamoViewModel reclamoViewModel)
         {
-            try
+            if(ModelState.IsValid)
             {
+                //TODO HACER EL ALTA EN LA BASE DATOS....
+                //VUELVO AL LISTADO DE RECLAMOS
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
+                //HAY ALGUN ERROR DE VALIDACION... VUELVO A MOSTRAR EL FORMULARIO
                 return View();
             }
+ 
         }
 
         // GET: ReclamosController/Edit/5
