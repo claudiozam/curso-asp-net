@@ -19,6 +19,7 @@ namespace WebApplicationSistemaDeReclamos.Models.ViewModels
         [StringLength(100)]
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public string Estado { get => estado; set => estado = value; }
+
         public DateTime FechaAlta { get => fechaAlta; set => fechaAlta = value; }
     }
 }
