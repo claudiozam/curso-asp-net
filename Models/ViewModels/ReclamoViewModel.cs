@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplicationSistemaDeReclamos.Models.ViewModels
 {
@@ -10,11 +11,14 @@ namespace WebApplicationSistemaDeReclamos.Models.ViewModels
         private string estado;
         private DateTime fechaAlta;
 
+        [DisplayName("Id auto generado")]
         public long Id { get => id; set => id = value; }
 
+        [DisplayName("Titulo del producto")]
         [Required]
         public string Titulo { get => titulo; set => titulo = value; }
 
+        [DisplayName("Descripcion")]
         [Required]
         [StringLength(100)]
         public string Descripcion { get => descripcion; set => descripcion = value; }
