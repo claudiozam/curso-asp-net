@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
   </ItemGroup>
 
 </Project>
