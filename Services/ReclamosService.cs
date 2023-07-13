@@ -23,7 +23,7 @@ namespace WebApplicationSistemaDeReclamos.Services
         {
             MySqlConnection connection = DbUtils.RecuperarConnection();
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "DELETE from reclamos WHERE id = @id";
+            command.CommandText = "DELETE FROM reclamos WHERE id = @id";
             command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
             connection.Close();
@@ -31,8 +31,26 @@ namespace WebApplicationSistemaDeReclamos.Services
 
         public List<Reclamo> RecuperarListadoDeReclamos()
         {
-            //TODO: FALTA EL BUSCAR EN LA BASE DE DATOS....
-            return new List<Reclamo>();
+            List<Reclamo> reclamos = new List<Reclamo>();
+            MySqlConnection connection = DbUtils.RecuperarConnection();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id, titulo, descripcion, estado, fechaAlta FROM reclamos";
+            MySqlDataReader dr = command.ExecuteReader();
+            Reclamo reclamo = null;
+            while (dr.Read())
+            {
+                reclamo = new Reclamo();
+                reclamo.Id = dr.GetInt64("id");
+                reclamo.Titulo = dr.GetString("titulo");
+                reclamo.Descripcion = dr.GetString("descripcion");
+                reclamo.Estado = dr.GetString("estado");
+                reclamo.FechaAlta = dr.GetDateTime("fechaAlta");
+                reclamos.Add(reclamo);
+            }
+
+            connection.Close();
+
+            return reclamos;
         }
     }
 }

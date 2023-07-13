@@ -12,18 +12,20 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         public ActionResult Index()
         {
             ReclamosService reclamosService = new ReclamosService();
-            //TODO tengo que recuperar el listao de reclamos....
+            List<Reclamo> reclamos = reclamosService.RecuperarListadoDeReclamos();
 
             List<ReclamoViewModel> reclamosViewModel = new List<ReclamoViewModel>();
-
-            ReclamoViewModel reclamoViewModel1 = new ReclamoViewModel();
-            reclamoViewModel1.Id = 1;
-            reclamoViewModel1.Titulo = "Ejemplo titulo";
-            reclamoViewModel1.Descripcion = "Ejemplo1";
-            reclamoViewModel1.Estado = "abierto";
-            reclamoViewModel1.FechaAlta = DateTime.Now;
-            reclamosViewModel.Add(reclamoViewModel1);
-
+            foreach(Reclamo r in reclamos)
+            {
+                reclamosViewModel.Add(new ReclamoViewModel() { 
+                    Id = r.Id,
+                    Titulo = r.Titulo,
+                    Descripcion = r.Descripcion,
+                    Estado = r.Estado,
+                    FechaAlta = r.FechaAlta
+                });
+            }
+       
             return View(reclamosViewModel);
         }
 
