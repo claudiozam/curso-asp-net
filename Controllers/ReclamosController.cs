@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationSistemaDeReclamos.Models;
 using WebApplicationSistemaDeReclamos.Models.ViewModels;
 using WebApplicationSistemaDeReclamos.Services;
 
@@ -55,8 +56,14 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         {
             if(ModelState.IsValid)
             {
-                //TODO HACER EL ALTA EN LA BASE DATOS....
-                //VUELVO AL LISTADO DE RECLAMOS
+                ReclamosService reclamosService = new ReclamosService();
+                Reclamo reclamo = new Reclamo();
+                reclamo.Titulo = reclamoViewModel.Titulo;
+                reclamo.Descripcion = reclamoViewModel.Descripcion;
+                reclamo.Estado = reclamoViewModel.Estado;
+                reclamo.FechaAlta = DateTime.Now;
+
+                reclamosService.AltaDeReclamo(reclamo);
                 return RedirectToAction(nameof(Index));
             }
             else
