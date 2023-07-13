@@ -11,10 +11,10 @@ namespace WebApplicationSistemaDeReclamos.Services
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "INSERT INTO reclamos (titulo, descripcion, estado, fechaAlta) VALUES " 
                 + " (@titulo, @descripcion, @estado, @fechaAlta);";
-            command.Parameters.AddWithValue("titulo", reclamo.Titulo);
-            command.Parameters.AddWithValue("descripcion", reclamo.Descripcion);
-            command.Parameters.AddWithValue("estado", reclamo.Estado);
-            command.Parameters.AddWithValue("fechaAlta", reclamo.FechaAlta);
+            command.Parameters.AddWithValue("@titulo", reclamo.Titulo);
+            command.Parameters.AddWithValue("@descripcion", reclamo.Descripcion);
+            command.Parameters.AddWithValue("@estado", reclamo.Estado);
+            command.Parameters.AddWithValue("@fechaAlta", reclamo.FechaAlta);
             command.ExecuteNonQuery();
             connection.Close();
         }
