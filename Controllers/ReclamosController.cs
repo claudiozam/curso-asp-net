@@ -100,22 +100,9 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         // GET: ReclamosController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            //TODO borrar de la base de datos el reclamo
+            return RedirectToAction(nameof(Index));
         }
-
-        // POST: ReclamosController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }
