@@ -52,9 +52,21 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, 
+                        new { onclick="borrarReclamo(this); return false;" })
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<script>
+    //OJO ESTO ES 100% JAVASCRIPT!!!!!!!! OJO!!!!!
+    function borrarReclamo(linkActual) {
+        bootbox.confirm('Borramos el reclamo?', function(resultado) {
+            if(resultado == true) {
+                window.location = linkActual.href;
+            }
+        });
+    }
+</script>

@@ -110,6 +110,10 @@ namespace WebApplicationSistemaDeReclamos.Controllers
         public ActionResult Delete(int id)
         {
             //TODO borrar de la base de datos el reclamo
+
+            ReclamosService reclamosService = new ReclamosService();
+            reclamosService.BorrarReclamo(id);
+
             return RedirectToAction(nameof(Index));
         }
         
