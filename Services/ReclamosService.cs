@@ -19,6 +19,16 @@ namespace WebApplicationSistemaDeReclamos.Services
             connection.Close();
         }
 
+        public void BorrarReclamo(long id)
+        {
+            MySqlConnection connection = DbUtils.RecuperarConnection();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "DELETE from reclamos WHERE id = @id";
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public List<Reclamo> RecuperarListadoDeReclamos()
         {
             //TODO: FALTA EL BUSCAR EN LA BASE DE DATOS....
