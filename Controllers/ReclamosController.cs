@@ -9,6 +9,29 @@ namespace WebApplicationSistemaDeReclamos.Controllers
     public class ReclamosController : Controller
     {
         // GET: ReclamosController
+
+        public ActionResult Buscar(string textoBucar)
+        {
+            ReclamosService reclamosService = new ReclamosService();
+            List<Reclamo> reclamos = reclamosService.RecuperarListadoDeReclamos(textoBucar);
+
+            List<ReclamoViewModel> reclamosViewModel = new List<ReclamoViewModel>();
+            foreach (Reclamo r in reclamos)
+            {
+                reclamosViewModel.Add(new ReclamoViewModel()
+                {
+                    Id = r.Id,
+                    Titulo = r.Titulo,
+                    Descripcion = r.Descripcion,
+                    Estado = r.Estado,
+                    FechaAlta = r.FechaAlta
+                });
+            }
+            ViewBag.textoBucar = textoBucar;
+            return View("Index", reclamosViewModel);
+        }
+
+        
         public ActionResult Index()
         {
             ReclamosService reclamosService = new ReclamosService();

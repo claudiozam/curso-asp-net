@@ -9,6 +9,17 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form action="/Reclamos/Buscar" method="post" class="row row-cols-lg-auto align-items-center">
+  <div class="col-6">
+        <input type="text" value="@ViewBag.textoBucar" name="textoBucar" class="form-control" placeholder="Buscador reclamos">
+  </div>
+
+  <div class="col-6">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -53,7 +64,7 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id }, 
-                        new { onclick="borrarReclamo(this); return false;" })
+                        new { @class="btn btn-danger", onclick="borrarReclamo(this); return false;" })
             </td>
         </tr>
 }

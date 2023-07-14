@@ -76,6 +76,33 @@ namespace WebApplicationSistemaDeReclamos.Services
             return reclamos;
         }
 
+        public List<Reclamo> RecuperarListadoDeReclamos(string textoBucar)
+        {
+            List<Reclamo> reclamos = new List<Reclamo>();
+            MySqlConnection connection = DbUtils.RecuperarConnection();
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id, titulo, descripcion, estado, fechaAlta FROM reclamos WHERE titulo LIKE @textoBucar OR descripcion like @textoBucar";
+            string parametroTextoBuscar = "%" + textoBucar + "%";
+            command.Parameters.AddWithValue("@textoBucar", parametroTextoBuscar);
+            MySqlDataReader dr = command.ExecuteReader();
+            Reclamo reclamo = null;
+            while (dr.Read())
+            {
+                reclamo = new Reclamo();
+                reclamo.Id = dr.GetInt64("id");
+                reclamo.Titulo = dr.GetString("titulo");
+                reclamo.Descripcion = dr.GetString("descripcion");
+                reclamo.Estado = dr.GetString("estado");
+                reclamo.FechaAlta = dr.GetDateTime("fechaAlta");
+                reclamos.Add(reclamo);
+            }
+
+            connection.Close();
+
+            return reclamos;
+        }
+
+
         public void ActualizarReclamo(Reclamo reclamo)
         {
             MySqlConnection connection = DbUtils.RecuperarConnection();
